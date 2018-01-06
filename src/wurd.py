@@ -1,12 +1,11 @@
 import argparse as arg
-import utils
 import datetime
 from password import Password
 import sqlite3
 from cryptography.fernet import Fernet
 import tkinter
-
 import os
+from popup import *
 
 
 def create_new_wurd(name):
@@ -27,7 +26,10 @@ def create_new_wurd(name):
     input('I understand. [RETURN]')
 
     create_new_key()
-    create_new_db()
+    create_new_bin()
+
+    print('Finished.')
+
     
 def create_new_key():
     print('Generating new key and saving to wurd.key')
@@ -37,23 +39,21 @@ def create_new_key():
     print('Done.')
 
 
-def create_new_db():
-    print('Inorder to keep your passwords safe, WURD requires a')
-    print('MASTER PASSWORD to be used to encrypt the entire database.\n')
-
-    print('Like the generated key, keep this password safe and memorized!')
-    p = input('Enter master password > ')
-    
-    print('Creating new database...')
-    conn = sqlite3.connect('test.db')
-    c = conn.cursor()
-    c.execute('CREATE TABLE folders (id INTEGER PRIMARY KEY, name TEXT)')
-    conn.commit()
-    c.execute('CREATE TABLE passwords (id INTEGER PRIMARY KEY, folder INTEGER, name TEXT, passwd TEXT, FOREIGN KEY(folder) REFERENCES folders(id))')
-    conn.commit()
+def create_new_bin():
+    print('Creating new WURD file in HOME directory...')
+    f = open('.wurd.dat', 'a+')
+    f.close()
     print('Done.')
-    
 
+
+def append_password(name, password):
+    root = tkinter.Tk()
+    root.title('Your New Password')
+    root.maxsize(256, 128)
+    popup = PasswordPopup()
+    popup.mainloop()
+    root.destroy()
+    
 def main():
     parser = arg.ArgumentParser()
 
@@ -71,15 +71,10 @@ def main():
         create_new_wurd(name)
     
     elif args['new']:
-        print('Started NEW PASSWORD prompt.')
         print('Follow the instructions below.')
-
-        name = input('Give this password a name. (e.g. Work Email) > ')
-        folder = input('Save this password in a folder? (y/n) > ')
-        if folder.lower() == 'y':
-            folder = input('Enter name of folder. (e.g. Social Media) > ')
-        else: pass
-        print(Password(name, folder).generate())
+        print('A secure password will be shown shortly...')
+        p = Password(args['new'], '').generate()
+        append_password(args['new'], p)
 
     else:
         print('No valid arguments given!')
