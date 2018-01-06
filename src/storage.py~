@@ -1,0 +1,13 @@
+import sqlite
+import datetime
+
+
+def initialize_new_wurd_database(password):
+    pass
+
+
+def update_wurd_record(record):
+    pass
+
+
+de
