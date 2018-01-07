@@ -1,14 +1,11 @@
-import bcrypt
-import string
 import random
 
 
 class Password:
-    allowed = string.ascii_letters + string.digits + '!@#$%^&*()-+_=,.<>?:;{}[]~'
+    allowed = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-+_=,.<>?:;{}[]~'
     
-    def __init__(self, name, dest):
+    def __init__(self, name):
         self.name = name
-        self.dest = dest
 
     def generate(self):
         p = []
@@ -17,8 +14,4 @@ class Password:
             random.shuffle(p)
 
         return ''.join(p)
-
-    def hash(self, password):
-        return bcrypt.hashpw(password, bcrypt.gensalt())
-
         

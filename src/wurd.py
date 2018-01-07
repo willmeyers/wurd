@@ -46,13 +46,12 @@ def create_new_bin():
     print('Done.')
 
 
-def append_password(name, password):
+def append_password(name):
     root = tkinter.Tk()
     root.title('Your New Password')
     root.maxsize(256, 128)
-    popup = PasswordPopup()
+    popup = NewPasswordPopup(name, master=root)
     popup.mainloop()
-    root.destroy()
     
 def main():
     parser = arg.ArgumentParser()
@@ -60,8 +59,9 @@ def main():
     parser.add_argument('-i', '--init', help='Initialize a new Wurd Storage instance')
     parser.add_argument('-n', '--new', help='Create a new password')
     parser.add_argument('-o', '--print', help='Print out of current passwords.')
-    parser.add_argument('-p', '--password', help='Get password by name')
-    parser.add_argument('-u', '--update', help='change password by name')
+    parser.add_argument('-f', '--fetch', help='Get password by name')
+    parser.add_argument('-c', '--change', help='change password by name')
+    parser.add_argument('-u', '---unlock', help='unlock using key')
     parser.add_argument('-d', '--delete', help='delete password by name')
 
     args = vars(parser.parse_args())
@@ -71,11 +71,26 @@ def main():
         create_new_wurd(name)
     
     elif args['new']:
-        print('Follow the instructions below.')
-        print('A secure password will be shown shortly...')
-        p = Password(args['new'], '').generate()
-        append_password(args['new'], p)
+        print('Your new password %s has been created!')
+        print('It was saved under the name', args['new'])
+        append_password(args['new'])
 
+    elif args['fetch']:
+        if args['unlock']:
+            print('Unlocking your vault with', args['unlock'])
+            print('Success!')
+            with open('.wurd.dat', 'r') as f:
+                for l in f.readlines():
+                    l = l.split()
+                    if l[0] == args['fetch']:
+                        print('Found password.')
+                        root.tkinter.Tk()
+                        root.title('Your Password')
+                        root.maxsize(256, 128)
+                        popup = FetchPasswordPopup(password, master=root)
+        else:
+            print('You must provide a key in order to unlock your password.')
+        
     else:
         print('No valid arguments given!')
 
