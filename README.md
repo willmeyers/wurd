@@ -1,27 +1,36 @@
 # Wurd
 *A CLI password manager.*
 
+## Purpose
+
+This project was done by a student trying to solve his password problems. I have no real intention
+of doing anything else with this other than putting it on Github as it most likey has countless
+security loopholes that people smarter than me would point out if I were to actual distribute this.
+
 ## Usage
 
-Creating a new instance 
+__Creating a new instance__
 
-![New Wurd Instance](/screenshots/001.gif)
+`wurd -i MyPasswords`
 
-`wurd -i MyPasswords
+Creates a new Wurd database and other files necessary to store passwords on your machine. All
+you have to do is follow a simple CLI setup wizard.
 
-Creating a new password
+__Creating a new password__
 
-![New Wurd Password](/screenshots/002.gif)
+`wurd -n PasswdName`
 
-`wurd -n Example`
+Passwords are easy to create with the built-in password generator. The generated password is automatically
+saved and then copied on your clipboard for copy-paste use.
 
-Getting a password
+__Getting a password__
 
-![Get Wurd Password](/screenshots/003.gif)
+`wurd -g PasswdName`
 
-`wurd -g Example`
+A password is fetched by name and then put on the clipboard for copy-paste use.
 
+__Deleting a password__
 
+`wurd -d PasswdName`
 
-
-
+Deletes the password from the database.
