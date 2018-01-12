@@ -9,6 +9,7 @@ def main():
     parser.add_argument('-n', '--new', help='Creates a new password or updates an old one.')
     parser.add_argument('-g', '--get', help='Fetches a password.')
     parser.add_argument('-d', '--delete', help='Deletes a password.')
+    parser.add_argument('--version', action='version', version='%(prog)s 1.0')
 
     args = vars(parser.parse_args())
 
