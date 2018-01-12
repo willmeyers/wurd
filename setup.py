@@ -7,5 +7,10 @@ setup(
     description = 'A password manager',
     author = 'Will Meyers',
     author_email = 'will@willmeyers.net',
-    packages = '
+    packages = ['wurd'],
+    entry_points = {
+        'console_scripts': [
+            'wurd = wurd.__main__:main'
+        ]
+    }
 )

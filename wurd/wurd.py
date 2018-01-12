@@ -7,7 +7,7 @@ import yaml
 from getpass import getpass
 from datetime import datetime
 
-from password import Password
+from .password import Password
 
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization, hashes
