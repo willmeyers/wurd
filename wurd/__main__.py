@@ -1,16 +1,15 @@
 import argparse as arg
-from . import __version__ as VERSION
 from .wurd import NewWurdInstance, WurdInstance
 
     
 def main():
     parser = arg.ArgumentParser()
 
-    parser.add_argument('-i', '--init', help='Initializes a new Wurd Storage instance')
-    parser.add_argument('-n', '--new', help='Creates a new password or updates an old one.')
-    parser.add_argument('-g', '--get', help='Fetches a password.')
-    parser.add_argument('-d', '--delete', help='Deletes a password.')
-    parser.add_argument('--version', action='version', version=VERSION)
+    parser.add_argument('-i', '--init', help='Initializes a new Wurd storage instance')
+    parser.add_argument('-n', '--new', help='Creates a new password')
+    parser.add_argument('-g', '--get', help='Fetches a password')
+    parser.add_argument('-d', '--delete', help='Deletes a password')
+    parser.add_argument('--version', action='version', version='1.0.1')
 
     args = vars(parser.parse_args())
 

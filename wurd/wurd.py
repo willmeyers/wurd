@@ -7,8 +7,6 @@ import yaml
 from getpass import getpass
 from datetime import datetime
 
-from .password import Password
-
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.asymmetric import rsa, padding
@@ -84,9 +82,9 @@ class NewWurdInstance:
         print('Wurd encrypts your private key to ensure security.')
         print('We require a secure master password to do so.')
 
-        master = getpass('You secure passphrase:')
+        master = getpass('Your secure passphrase:')
         if getpass('Confirm your passphase:') != master:
-            print('Passphrases did not match!')
+            print('Passphrases do not match!')
             print('Exiting wizard!')
             sys.exit(1)
         
