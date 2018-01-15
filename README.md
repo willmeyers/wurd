@@ -7,6 +7,12 @@ This project was done by a student trying to solve his password problems. I have
 of doing anything else with this other than putting it on Github as it most likey has countless
 security loopholes that people smarter than me would point out if I were to actual distribute this.
 
+## Install
+
+1. Install dependences using `pip install -r requirements.txt`
+
+2. Run `python setup.py install`
+
 ## Usage
 
 __Creating a new instance__
