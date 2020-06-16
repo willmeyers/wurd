@@ -3,7 +3,6 @@ import sys
 import random
 import pyperclip
 import sqlite3
-import yaml
 from getpass import getpass
 from datetime import datetime
 
